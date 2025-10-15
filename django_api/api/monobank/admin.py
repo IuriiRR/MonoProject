@@ -29,6 +29,7 @@ class MonoJarModelAdmin(admin.ModelAdmin):
         "title",
         "currency",
         "formatted_balance",
+        "formatted_invested",
         "formatted_goal",
         "is_budget",
         "is_active",
