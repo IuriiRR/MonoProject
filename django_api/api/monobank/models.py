@@ -287,10 +287,17 @@ class MonoJar(models.Model):
     goal = models.IntegerField(null=True, blank=True)
     is_budget = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    invested = models.IntegerField(default=0)
 
     @property
     def formatted_balance(self):
         return formatted_sum(self.balance, self.currency.name if self.currency else "?")
+
+    @property
+    def formatted_invested(self):
+        return formatted_sum(
+            self.invested, self.currency.name if self.currency else "?"
+        )
 
     @property
     def formatted_goal(self):
