@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - uses: actions/checkout@v2
+        uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v4
       - name: Lint api
         run: |
           set -e
@@ -27,7 +27,7 @@ jobs:
   typecheck-api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Typecheck api
         run: |
           set -e
@@ -35,7 +35,7 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Test api
         run: |
           make test-api
@@ -44,8 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - uses: actions/checkout@v2
+        uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v4
       - name: Lint chatbot
         run: |
           set -e
@@ -54,7 +54,7 @@ jobs:
   typecheck-chatbot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Typecheck chatbot
         run: |
           set -e
@@ -63,7 +63,7 @@ jobs:
   test-chatbot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Test chatbot
         run: |
           make test-chatbot
@@ -71,13 +71,13 @@ jobs:
   test_frontend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 20.1
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: '20.1'
-      - name: Change to frontend directory
-        run: cd frontend/mono_frontend
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/mono_frontend/package.json
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend/mono_frontend

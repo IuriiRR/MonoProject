@@ -23,6 +23,7 @@ monojars_variants = [
                 "title": "pre_created_title",
                 "currency": {"code": 980, "name": "UAH", "flag": "🇺🇦", "symbol": "грн"},
                 "balance": 1000,
+                "invested": 0,
                 "goal": 1001,
                 "owner_name": "User-precreated_user_tg_id",
                 "is_budget": False,
@@ -43,6 +44,7 @@ monojars_variants = [
                 "title": "pre_created_title",
                 "currency": {"code": 980, "name": "UAH", "flag": "🇺🇦", "symbol": "грн"},
                 "balance": 1000,
+                "invested": 0,
                 "goal": 1001,
                 "owner_name": "User-precreated_user_tg_id",
                 "is_budget": False,
@@ -108,6 +110,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 4000,
+                    "invested": 0,
                     "goal": 4001,
                     "owner_name": "User-family_member_tg_id",
                     "is_budget": False,
@@ -123,6 +126,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 1000,
+                    "invested": 0,
                     "goal": 1001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -138,6 +142,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 2000,
+                    "invested": 0,
                     "goal": 2001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -153,6 +158,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 3000,
+                    "invested": 0,
                     "goal": 3001,
                     "owner_name": "User-admin_name",
                     "is_budget": False,
@@ -181,6 +187,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 1000,
+                    "invested": 0,
                     "goal": 1001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -196,6 +203,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 2000,
+                    "invested": 0,
                     "goal": 2001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -223,6 +231,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 3000,
+                    "invested": 0,
                     "goal": 3001,
                     "owner_name": "User-custom_name",
                     "is_budget": False,
@@ -251,6 +260,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 4000,
+                    "invested": 0,
                     "goal": 4001,
                     "owner_name": "User-family_member_tg_id",
                     "is_budget": False,
@@ -266,6 +276,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 1000,
+                    "invested": 0,
                     "goal": 1001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -281,6 +292,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 2000,
+                    "invested": 0,
                     "goal": 2001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -309,6 +321,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 4000,
+                    "invested": 0,
                     "goal": 4001,
                     "owner_name": "User-family_member_tg_id",
                     "is_budget": False,
@@ -324,6 +337,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 1000,
+                    "invested": 0,
                     "goal": 1001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -339,6 +353,7 @@ monojars_list_variants = [
                         "symbol": "грн",
                     },
                     "balance": 2000,
+                    "invested": 0,
                     "goal": 2001,
                     "owner_name": "User-precreated_user_tg_id",
                     "is_budget": False,
@@ -423,6 +438,7 @@ monojars_set_budget_variants = [
                 "title": "pre_created_title",
                 "currency": {"code": 980, "name": "UAH", "flag": "🇺🇦", "symbol": "грн"},
                 "balance": 1000,
+                "invested": 0,
                 "goal": 1001,
                 "owner_name": "User-precreated_user_tg_id",
                 "is_budget": True,
@@ -446,6 +462,7 @@ monojars_set_budget_variants = [
                 "title": "pre_created_title",
                 "currency": {"code": 980, "name": "UAH", "flag": "🇺🇦", "symbol": "грн"},
                 "balance": 1000,
+                "invested": 0,
                 "goal": 1001,
                 "owner_name": "User-precreated_user_tg_id",
                 "is_budget": True,
@@ -500,6 +517,7 @@ monojars_set_budget_variants = [
                 "title": "pre_created_title",
                 "currency": {"code": 980, "name": "UAH", "flag": "🇺🇦", "symbol": "грн"},
                 "balance": 1000,
+                "invested": 0,
                 "goal": 1001,
                 "owner_name": "User-precreated_user_tg_id",
                 "is_budget": False,
@@ -533,6 +551,88 @@ def test_monojars_set_budget_status(
     )
     assert response.status_code == variant.status_code
     assert response.data == variant.expected
+
+
+# New tests for set_invested action
+monojars_set_invested_variants = [
+    (
+        "monojars set invested admin",
+        Variant(
+            view=MonoJarViewSet.as_view({"patch": "set_invested"}),
+            name="monojars-set-invested",
+            method_name="patch",
+            is_admin=True,
+            tg_id="admin_name",
+            url_kwargs={"pk": "pre_created_jar_id"},
+            request_data={"invested": 555},
+            need_json_dumps=True,
+            expected=None,
+        ),
+        555,
+    ),
+    (
+        "monojars set invested owner",
+        Variant(
+            view=MonoJarViewSet.as_view({"patch": "set_invested"}),
+            name="monojars-set-invested",
+            method_name="patch",
+            is_admin=False,
+            tg_id="precreated_user_tg_id",
+            url_kwargs={"pk": "pre_created_jar_id"},
+            request_data={"invested": 777},
+            need_json_dumps=True,
+            expected=None,
+        ),
+        777,
+    ),
+    (
+        "monojars set invested not owner",
+        Variant(
+            view=MonoJarViewSet.as_view({"patch": "set_invested"}),
+            name="monojars-set-invested",
+            method_name="patch",
+            is_admin=False,
+            tg_id="some_user",
+            url_kwargs={"pk": "pre_created_jar_id"},
+            request_data={"invested": 999},
+            need_json_dumps=True,
+            status_code=404,
+            expected={"detail": ErrorDetail(string="Not found.", code="not_found")},
+        ),
+        0,  # should remain unchanged
+    ),
+]
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("api_request")
+@pytest.mark.parametrize(
+    "test_name, variant, expected_invested", monojars_set_invested_variants
+)
+@pytest.mark.usefixtures("pre_created_mono_jar")
+def test_monojars_set_invested(
+    api_request, test_name, variant, expected_invested, pre_created_mono_card
+):
+    view = variant.view
+
+    response = view(
+        api_request(
+            variant.name,
+            tg_id=variant.tg_id,
+            method_name=variant.method_name,
+            is_admin=variant.is_admin,
+            url_kwargs=variant.url_kwargs,
+            data=variant.request_data,
+            create_new_user=variant.create_new_user,
+            need_json_dumps=variant.need_json_dumps,
+        ),
+        **variant.url_kwargs,
+    )
+    assert response.status_code == variant.status_code
+    assert response.data == variant.expected
+
+    jar = MonoJar.objects.get(id="pre_created_jar_id")
+    assert jar.invested == expected_invested
 
 
 monojars_available_months_variants = [

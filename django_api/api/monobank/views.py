@@ -267,11 +267,21 @@ class MonoJarViewSet(MonoBankAccessMixin, ModelViewSet):
             "list",
             "retrieve",
             "set_budget_status",
+            "set_invested",
             "available_months",
             "month_summary",
         ):
             permission = IsOwnerOrFamilyOrAdminPermission()
         return [permission]
+
+    @action(detail=True, methods=["patch"])
+    def set_invested(self, request, pk=None):
+        """Set the invested amount of a jar."""
+        jar = self.get_object()
+        invested = request.data.get("invested")
+        jar.invested = invested
+        jar.save()
+        return Response(status=200)
 
     def get_queryset(self):
         users = self.request.query_params.get("users")
@@ -385,7 +395,7 @@ class MonoJarTransactionViewSet(MonoBankAccessMixin, ModelViewSet):
         # all jar transactions from all users with optimized joins
         queryset = JarTransaction.objects.select_related(
             "mcc__category", "account__monoaccount__user", "currency"
-        ).order_by("time", "id")
+        ).order_by("-time", "id")
 
         # filter by jar_id
         if jar_ids:
@@ -439,7 +449,7 @@ class MonoTransactionViewSet(MonoBankAccessMixin, ModelViewSet):
         # Optimized queryset with proper joins
         queryset = MonoTransaction.objects.select_related(
             "mcc__category", "account__monoaccount__user", "currency"
-        ).order_by("time", "id")
+        ).order_by("-time", "id")
 
         # filter by card_id
         if card_ids:
