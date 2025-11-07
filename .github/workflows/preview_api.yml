@@ -14,43 +14,73 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  all:
+  lint-api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v4
       - name: Lint api
         run: |
           set -e
           make lint-api
+  typecheck-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Typecheck api
         run: |
           set -e
           make typecheck-api
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Test api
         run: |
           make test-api
+
+  lint-chatbot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v4
       - name: Lint chatbot
         run: |
           set -e
           make lint-chatbot
+
+  typecheck-chatbot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Typecheck chatbot
         run: |
           set -e
           make typecheck-chatbot
+
+  test-chatbot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Test chatbot
         run: |
           make test-chatbot
+
+  test_frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: frontend/mono_frontend/package.json
-      - name: Install frontend dependencies
+      - name: Install dependencies
         run: npm install
         working-directory: ./frontend/mono_frontend
-      - name: Run frontend tests
+      - name: Run tests
         run: npm test
         working-directory: ./frontend/mono_frontend
