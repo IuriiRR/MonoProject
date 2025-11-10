@@ -142,6 +142,25 @@ class TestRequestManagerHTTPMethods:
                 },
             )
 
+    @patch("src.request_manager.requests.get")
+    def test_get_request_connection_error(self, mock_get, request_manager):
+        """Test GET request raises ConnectionError when API is unavailable"""
+        with patch.object(
+            request_manager,
+            "_RequestManager__get_auth_token",
+            return_value="test_token",
+        ):
+            # Simulate upstream API connection failure
+            def fake_db_call(*args, **kwargs):
+                raise ConnectionError("DB is unavailable")
+
+            mock_get.side_effect = fake_db_call
+
+            with pytest.raises(ConnectionError) as exc_info:
+                request_manager.get("/test/endpoint")
+
+            assert "API service is unavailable" in str(exc_info.value)
+
     @patch("src.request_manager.requests.post")
     def test_post_request_with_body(self, mock_post, request_manager):
         """Test POST request with JSON body"""
