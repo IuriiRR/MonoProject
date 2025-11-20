@@ -556,7 +556,6 @@ class TestEndpoint(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        logger.info("something went wrong")
         # from ai_agent.agent import get_monthly_jar_transactions_tool
         # get_monthly_jar_transactions_tool("2025-04-10")
         # return

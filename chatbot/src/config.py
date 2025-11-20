@@ -13,6 +13,7 @@ class Config:
     API_HOST = os.getenv("API_HOST", "NOT_SET")
     API_ADMIN_USERNAME = os.getenv("API_ADMIN_USERNAME", "NOT_SET")
     API_ADMIN_PASSWORD = os.getenv("API_ADMIN_PASSWORD", "NOT_SET")
+    SENTRY_DSN = os.getenv("SENTRY_DSN_CHATBOT", "NOT_SET")
 
     def __setattr__(self, key, value):
         raise Exception("new values should not be set manually")
