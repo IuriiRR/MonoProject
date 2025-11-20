@@ -39,6 +39,8 @@ Set environment variables in `.env` file:
 | `LOGS_CHAT_ID`                      | Admin who receive telegram logs                                                                        |    ✅     | ``                                                                 |
 | `ENV`                               | Stage of application (dev, prod, local...)                                                             |    ✅     | ``                                                                 |"
 | `GOOGLE_API_KEY`                    | Google api key for LLM interractions (https://aistudio.google.com/apikey)                              |    ✅     | ``                                                                 |"
+| `SENTRY_DSN_API`                    | Sentry DSN for Django API error tracking                                                               |          | `https://...@sentry.io/...`                                        |
+| `SENTRY_DSN_CHATBOT`                | Sentry DSN for Chatbot error tracking                                                                  |          | `https://...@sentry.io/...`                                        |
 ## Additional Information
 
 `pip install -r requirements.txt`
@@ -80,3 +82,14 @@ Local backend config for CELERY:
 NOTE: if you have troubles with `entrypoint.sh` - you can use command below (with services you need):
 
 `docker-compose -f docker-compose-local.yaml -f docker-compose-local-alternative-api.yaml up --build`
+
+## Error Tracking (Sentry)
+
+Sentry integration is available for both the Django API and Chatbot services.
+
+1.  **Setup**:
+    *   Create projects in Sentry for "Django API" and "Chatbot".
+    *   Get the DSN for each project.
+2.  **Configuration**:
+    *   Add `SENTRY_DSN_API` and `SENTRY_DSN_CHATBOT` to your `.env` file.
+    *   See `SENTRY_SETUP.md` for detailed instructions.
