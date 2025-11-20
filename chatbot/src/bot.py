@@ -6,6 +6,7 @@ import logging
 from datetime import datetime, timedelta
 
 import matplotlib
+import sentry_sdk
 from aiogram import Bot, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
@@ -39,6 +40,12 @@ from aiogram.types import InlineKeyboardButton, InputFile
 # load_dotenv()
 config = get_config()
 rm = RequestManager(config)
+
+if config.SENTRY_DSN and config.SENTRY_DSN != "NOT_SET":
+    sentry_sdk.init(
+        dsn=config.SENTRY_DSN,
+        traces_sample_rate=1.0,
+    )
 
 bot = Bot(token=config.BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())

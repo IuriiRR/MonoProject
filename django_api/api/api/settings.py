@@ -15,6 +15,7 @@ from datetime import timedelta
 from distutils.util import strtobool
 from pathlib import Path
 
+import sentry_sdk
 from dotenv import load_dotenv
 
 load_dotenv()  # pyright: ignore[reportUnusedCallResult]
@@ -309,3 +310,11 @@ IS_WORKER = strtobool(
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
 CONSUMER_TG_BOT_TOKEN = os.getenv("BOT_TOKEN", "NOT_SET")
 LOGGING_TG_BOT_TOKEN = os.getenv("BOT_TOKEN", "LOGS_BOT_TOKEN")
+
+SENTRY_DSN = os.getenv("SENTRY_DSN_API")
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
